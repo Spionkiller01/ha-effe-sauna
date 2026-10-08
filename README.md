@@ -1,56 +1,60 @@
-# Effe ECC (My Effe) für Home Assistant
+# Effe ECC (My Effe) for Home Assistant
 
-Inoffizielle Integration für Effe-Dampfbäder und -Saunen mit **ECC-Modul der neuesten Generation**
-(Einrichtung per Bluetooth, Bedienung über die App „My Effe"). Die Integration nutzt dieselbe
-Cloud-Schnittstelle wie die App; Statusänderungen kommen per Push.
+[![hacs_badge](https://img.shields.io/badge/HACS-Custom-41BDF5.svg)](https://github.com/hacs/integration)
 
-> Das Modul hat keine nutzbare lokale Schnittstelle: Der einzige offene Port (81) ist ein
-> WebSocket mit Anmeldung, den auch die App nicht benutzt. Ohne Internet und Effe-Cloud
-> funktioniert die Integration daher nicht. Ältere Module (Port 8899, App „Effe ECC") werden
-> nicht unterstützt.
+Unofficial Home Assistant integration for **Effe** steam baths (hammam) and saunas with the
+**current-generation ECC module** — the one that is set up over Bluetooth and controlled with the
+"My Effe" app. It uses the same cloud API as the app; state changes arrive by push.
 
-## Installation über HACS
+> The module has no usable local API: its only open port (81) is an authenticated WebSocket that
+> the app itself never uses. The integration therefore needs internet access and the Effe cloud.
+> Older modules (TCP port 8899, "Effe ECC" app) are not supported.
 
-1. HACS → ⋮ → **Benutzerdefinierte Repositories**
-2. `https://github.com/Spionkiller01/ha-effe-sauna` eintragen, Typ **Integration**
-3. „Effe ECC (My Effe)" installieren und Home Assistant neu starten
-4. **Einstellungen → Geräte & Dienste → Integration hinzufügen → Effe ECC (My Effe)**,
-   E-Mail und Passwort des My-Effe-Kontos eingeben
+Not affiliated with or endorsed by Effegibi S.r.l.
 
-Manuell: Ordner `custom_components/effe_sauna/` nach `config/custom_components/` kopieren.
+## Installation (HACS)
 
-## Unterstützte Funktionen
+1. HACS → ⋮ → **Custom repositories**
+2. Add `https://github.com/Spionkiller01/ha-effe-sauna`, type **Integration**
+3. Install "Effe ECC (My Effe)" and restart Home Assistant
+4. **Settings → Devices & services → Add integration → Effe ECC (My Effe)** and sign in with
+   your My Effe e-mail and password
 
-Getestet an einem Dampfbad (Systemtyp `inside`, Firmware `EHST10TE`).
+Manual: copy `custom_components/effe_sauna/` to `config/custom_components/`.
 
-| Entität | Funktion |
+## Features
+
+Tested on a steam bath (system type `inside`, firmware `EHST10TE`).
+
+| Entity | Function |
 |---|---|
-| `climate` | Dampf ein/aus, Dampfstufe niedrig/mittel/hoch (42/44/46 °C) als Voreinstellung |
-| `light` Licht | Kabinenlicht ein/aus |
-| `light` Farblicht | ein/aus, 9 Programme als Effekt (Rot, Gelb, Grün, Blau, Hellblau, Sonnenaufgang, Sonnenuntergang, Meer, Wald) |
-| `switch` Bedienfeld | Bedienfeld ein/aus |
-| `switch` Mood-Licht | nur wenn am Gerät vorhanden und freigeschaltet |
-| `sensor` | Dampf-Solltemperatur; Diagnose: Timer-Einstellung, aktive Alarme, zuletzt gesehen, IP-Adresse |
-| `binary_sensor` | Tür, bereit, Dampf, pausiert, Wärmebank, Alarm; Diagnose: Wartung fällig, Cloud-Push |
+| `climate` | Steam on/off, steam level low/medium/high (42/44/46 °C) as preset |
+| `light` Light | Cabin light on/off |
+| `light` Chromotherapy | On/off, 9 programmes as effects (red, yellow, green, blue, light blue, sunrise, sunset, sea, forest) |
+| `switch` Control panel | Panel on/off |
+| `switch` Mood light | Only if present and enabled on the device |
+| `sensor` | Steam setpoint; diagnostic: timer setting, active alarms, last seen, IP address |
+| `binary_sensor` | Door, ready, steam, paused, warm bench, alarm; diagnostic: service due, cloud push |
 
-Für Saunen sind Heizung ein/aus, Licht, Farblicht, Mood-Licht, Infrarot und Biosauna sowie
-Solltemperatur und Soll-Luftfeuchte (nur lesend) angelegt, aber **ungetestet**.
+For saunas the integration creates heater on/off, light, chromotherapy, mood light, infrared and
+biosauna plus read-only temperature and humidity setpoints. **The sauna part is untested** —
+reports are welcome.
 
-### Was nicht geht
+### Limitations
 
-- **Ist-Temperatur:** Die Cloud liefert keinen Messwert, nur Sollwerte.
-- **Freie Solltemperatur:** Die App kennt nur die drei Dampfstufen; andere Werte sendet die Integration nicht.
-- **Dimmen, Wärmebank schalten, Zeitprogramme:** dafür sind keine geprüften Befehle bekannt.
+- **No measured temperature:** the cloud only reports setpoints.
+- **No free setpoint:** the app only knows the three steam levels; the integration sends nothing else.
+- **No dimming, warm-bench control or schedules:** no verified commands are known for these.
 
-## Sicherheit
+## Safety
 
-- Es werden nur Befehle gesendet, die auch die App sendet.
-- Dampf, Sauna, Infrarot und Biosauna startet die Integration nicht, solange das Modul die Tür
-  als offen oder einen Alarm meldet. Die Sperren von Steuerung und Cloud gelten zusätzlich.
-- Die Dampfstufe wird ohne eigenes „Dampf ein" gesendet; ob die Steuerung dabei selbst startet,
-  ist nicht geprüft. Die Sicherheitsprüfung gilt deshalb auch dafür.
+- Only commands the official app sends are used.
+- Steam, sauna, infrared and biosauna are not started while the module reports an open door or
+  an alarm. The interlocks of the controller and the cloud apply on top of that.
+- Remotely starting a heater is your responsibility — make sure the cabin is safe to heat.
 
-## Fehler melden
+## Reporting problems
 
-**Einstellungen → Geräte & Dienste → Effe ECC → ⋮ → Diagnose herunterladen** enthält den
-aktuellen Zustand und die letzten 50 Rohnachrichten (Zugangsdaten und Kennungen sind geschwärzt).
+**Settings → Devices & services → Effe ECC → ⋮ → Download diagnostics** contains the current
+state and the last 50 raw messages (credentials and identifiers are redacted). Please attach it
+to your issue.
