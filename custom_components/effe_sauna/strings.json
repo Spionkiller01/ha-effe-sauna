@@ -1,0 +1,142 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "My Effe account",
+        "description": "Sign in with the account you use in the My Effe app. The ECC module is controlled through the Effe cloud.",
+        "data": {
+          "email": "E-mail",
+          "password": "Password"
+        }
+      },
+      "reauth_confirm": {
+        "title": "Sign in again",
+        "description": "The password for {email} is no longer accepted.",
+        "data": {
+          "password": "Password"
+        }
+      }
+    },
+    "error": {
+      "invalid_auth": "E-mail or password is wrong.",
+      "cannot_connect": "The Effe cloud could not be reached.",
+      "no_devices": "No ECC module is paired with this account."
+    },
+    "abort": {
+      "already_configured": "This account is already set up.",
+      "reauth_successful": "Signed in again."
+    }
+  },
+  "entity": {
+    "climate": {
+      "steam": {
+        "state_attributes": {
+          "preset_mode": {
+            "state": {
+              "low": "Low",
+              "medium": "Medium",
+              "high": "High"
+            }
+          }
+        }
+      }
+    },
+    "light": {
+      "light": {
+        "name": "Light"
+      },
+      "chromo": {
+        "name": "Chromotherapy",
+        "state_attributes": {
+          "effect": {
+            "state": {
+              "red": "Red",
+              "yellow": "Yellow",
+              "green": "Green",
+              "blue": "Blue",
+              "water": "Light blue",
+              "sunrise": "Sunrise",
+              "sunset": "Sunset",
+              "sea": "Sea",
+              "wood": "Forest"
+            }
+          }
+        }
+      }
+    },
+    "switch": {
+      "panel": {
+        "name": "Control panel"
+      },
+      "mood": {
+        "name": "Mood light"
+      },
+      "infrared": {
+        "name": "Infrared"
+      },
+      "biosauna": {
+        "name": "Biosauna"
+      }
+    },
+    "sensor": {
+      "steam_setpoint": {
+        "name": "Steam setpoint"
+      },
+      "sauna_setpoint": {
+        "name": "Sauna setpoint"
+      },
+      "humidity_setpoint": {
+        "name": "Humidity setpoint"
+      },
+      "timer": {
+        "name": "Timer setting"
+      },
+      "alarms": {
+        "name": "Active alarms"
+      },
+      "last_seen": {
+        "name": "Last seen"
+      },
+      "ip_address": {
+        "name": "IP address"
+      }
+    },
+    "binary_sensor": {
+      "door": {
+        "name": "Door"
+      },
+      "ready": {
+        "name": "Ready"
+      },
+      "steam": {
+        "name": "Steam"
+      },
+      "paused": {
+        "name": "Paused"
+      },
+      "warm": {
+        "name": "Warm bench"
+      },
+      "heating": {
+        "name": "Heating"
+      },
+      "service": {
+        "name": "Service due"
+      },
+      "alarm": {
+        "name": "Alarm"
+      },
+      "push": {
+        "name": "Cloud push"
+      }
+    }
+  },
+  "exceptions": {
+    "door_open": {
+      "message": "Not started: the module reports the door as open."
+    },
+    "alarm_active": {
+      "message": "Not started: the module reports an alarm ({alarms})."
+    }
+  }
+}

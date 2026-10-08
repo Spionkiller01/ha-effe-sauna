@@ -1,0 +1,12 @@
+{
+  "domain": "effe_sauna",
+  "name": "Effe ECC (My Effe)",
+  "codeowners": ["@Spionkiller01"],
+  "config_flow": true,
+  "documentation": "https://github.com/Spionkiller01/ha-effe-sauna",
+  "integration_type": "hub",
+  "iot_class": "cloud_push",
+  "issue_tracker": "https://github.com/Spionkiller01/ha-effe-sauna/issues",
+  "requirements": [],
+  "version": "0.1.0"
+}

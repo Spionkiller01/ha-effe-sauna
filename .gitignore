@@ -1,0 +1,6 @@
+ref/
+tools/
+*.log
+.secrets.env
+.token.json
+__pycache__/

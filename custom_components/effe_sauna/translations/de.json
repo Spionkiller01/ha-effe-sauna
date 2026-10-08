@@ -1,0 +1,142 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "My-Effe-Konto",
+        "description": "Melde dich mit dem Konto an, das du in der My-Effe-App benutzt. Das ECC-Modul wird über die Effe-Cloud gesteuert.",
+        "data": {
+          "email": "E-Mail",
+          "password": "Passwort"
+        }
+      },
+      "reauth_confirm": {
+        "title": "Erneut anmelden",
+        "description": "Das Passwort für {email} wird nicht mehr akzeptiert.",
+        "data": {
+          "password": "Passwort"
+        }
+      }
+    },
+    "error": {
+      "invalid_auth": "E-Mail oder Passwort ist falsch.",
+      "cannot_connect": "Die Effe-Cloud ist nicht erreichbar.",
+      "no_devices": "Mit diesem Konto ist kein ECC-Modul gekoppelt."
+    },
+    "abort": {
+      "already_configured": "Dieses Konto ist bereits eingerichtet.",
+      "reauth_successful": "Erneut angemeldet."
+    }
+  },
+  "entity": {
+    "climate": {
+      "steam": {
+        "state_attributes": {
+          "preset_mode": {
+            "state": {
+              "low": "Niedrig",
+              "medium": "Mittel",
+              "high": "Hoch"
+            }
+          }
+        }
+      }
+    },
+    "light": {
+      "light": {
+        "name": "Licht"
+      },
+      "chromo": {
+        "name": "Farblicht",
+        "state_attributes": {
+          "effect": {
+            "state": {
+              "red": "Rot",
+              "yellow": "Gelb",
+              "green": "Grün",
+              "blue": "Blau",
+              "water": "Hellblau",
+              "sunrise": "Sonnenaufgang",
+              "sunset": "Sonnenuntergang",
+              "sea": "Meer",
+              "wood": "Wald"
+            }
+          }
+        }
+      }
+    },
+    "switch": {
+      "panel": {
+        "name": "Bedienfeld"
+      },
+      "mood": {
+        "name": "Mood-Licht"
+      },
+      "infrared": {
+        "name": "Infrarot"
+      },
+      "biosauna": {
+        "name": "Biosauna"
+      }
+    },
+    "sensor": {
+      "steam_setpoint": {
+        "name": "Dampf-Solltemperatur"
+      },
+      "sauna_setpoint": {
+        "name": "Sauna-Solltemperatur"
+      },
+      "humidity_setpoint": {
+        "name": "Soll-Luftfeuchte"
+      },
+      "timer": {
+        "name": "Timer-Einstellung"
+      },
+      "alarms": {
+        "name": "Aktive Alarme"
+      },
+      "last_seen": {
+        "name": "Zuletzt gesehen"
+      },
+      "ip_address": {
+        "name": "IP-Adresse"
+      }
+    },
+    "binary_sensor": {
+      "door": {
+        "name": "Tür"
+      },
+      "ready": {
+        "name": "Bereit"
+      },
+      "steam": {
+        "name": "Dampf"
+      },
+      "paused": {
+        "name": "Pausiert"
+      },
+      "warm": {
+        "name": "Wärmebank"
+      },
+      "heating": {
+        "name": "Heizung"
+      },
+      "service": {
+        "name": "Wartung fällig"
+      },
+      "alarm": {
+        "name": "Alarm"
+      },
+      "push": {
+        "name": "Cloud-Push"
+      }
+    }
+  },
+  "exceptions": {
+    "door_open": {
+      "message": "Nicht gestartet: Das Modul meldet die Tür als offen."
+    },
+    "alarm_active": {
+      "message": "Nicht gestartet: Das Modul meldet einen Alarm ({alarms})."
+    }
+  }
+}
